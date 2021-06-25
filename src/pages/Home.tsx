@@ -9,10 +9,16 @@ import { Button } from '../components/Button'
 import '../styles/auth.scss'
 import { useAuth } from '../hooks/useAuth'
 import { database } from '../services/firebase'
+import { useTheme } from '../hooks/useTheme'
 
 export function Home() {
   const history = useHistory();
   const {user,signInWithGoogle} = useAuth()
+  
+  const {theme, toggleTheme} = useTheme()
+
+
+
   const [roomCode, setRoomCode] = useState('')
 
   async function handleCreateRoom(){
@@ -35,11 +41,16 @@ export function Home() {
       alert('Room does not exists.')
     }
 
+    if(roomRef.val().endedAt){
+      alert('Room already closed.')
+      return
+    }
+
     history.push(`/rooms/${roomCode}`)
 
   }
   return (
-    <div id="page-auth">
+    <div id="page-auth" className={theme}>
       <aside>
         <img src={illustrationImg} alt="Ilustração simbolizando perguntas e respostas" />
         <strong>Crie salas de Q&amp;A ao vivo</strong>
@@ -47,6 +58,8 @@ export function Home() {
       </aside>
       <main>
         <div className="main-content">
+          <h1>{theme}</h1>
+          <button onClick={toggleTheme}>Toggle</button>
           <img src={logoImg} alt="Letmeask" />
           <button onClick={handleCreateRoom} className="create-room">
             <img src={googleIconImg} alt="Logo do Google" />
