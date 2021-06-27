@@ -145,4 +145,25 @@ main{
       margin-left: 16px;
     }
   }
+
+  .header{
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .dark-mode{
+    background: rgba(0, 0, 0, 0.650);
+    color: #FFF;
+    width: 100px;
+    height: 30px;
+    margin-bottom: 20px;
+    border:solid 1px;
+    border-radius: 7px;
+
+    transition: .2s;
+
+    &:hover{
+      background: rgba(0, 0, 0, 0.450);
+    }
+  }
 }

@@ -58,8 +58,9 @@ export function Home() {
       </aside>
       <main>
         <div className="main-content">
-          <h1>{theme}</h1>
-          <button onClick={toggleTheme}>Toggle</button>
+          <header className="header">
+          <button onClick={toggleTheme} className="dark-mode">Tema Escuro</button>
+          </header>
           <img src={logoImg} alt="Letmeask" />
           <button onClick={handleCreateRoom} className="create-room">
             <img src={googleIconImg} alt="Logo do Google" />
